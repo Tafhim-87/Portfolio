@@ -7,7 +7,7 @@ import Testomonial from "@/Components/Testomonial";
 
 const page = () => {
   return (
-    <div className="font-body">
+    <div className="font-body overflow-x-hidden">
       <Hero />
       <Experties />
       <Work />
