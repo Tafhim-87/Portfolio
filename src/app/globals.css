@@ -8,26 +8,13 @@ body {
   overflow-x: hidden;
 }
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #010208;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: #ffffff;
+  background-color: #010208;
   font-family: "Syne", serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
 }
