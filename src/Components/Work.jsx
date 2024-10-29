@@ -95,13 +95,14 @@ const Work = () => {
                   </h3>
                   <Link
                     href={`${item.link}`}
+                    target="_blank"
                     className="text-[12px] bg-transparent w-[67px] hidden md:flex justify-center items-center active:scale-105 py-[8px] px-[24px] border-[1px] border-[#ffffff] rounded-full"
                   >
                     Web
                   </Link>
                 </div>
                 <Link
-                  href={"/"}
+                  href={"/projects"}
                   className="py-[16px] px-[32px] border-none bg-[#ffffff] rounded-full mt-2 md:mt-[32px] w-[184px] md:w-[184px] h-[33px] md:h-[56px] flex items-center justify-center text-[#010208] active:scale-105"
                 >
                   View Case Study

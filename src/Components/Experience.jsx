@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const Experience = () => {
   let data = [
@@ -6,6 +7,7 @@ const Experience = () => {
       position: "Frontend Developer",
       company: "Acronation",
       date: "10/24/2024 - running",
+      link: "https://acronation.net/",
     },
   ];
   return (
@@ -25,9 +27,11 @@ const Experience = () => {
                 {item.position}
               </h1>
               <div className="flex flex-col gap-[8px] justify-center items-center">
-                <h3 className="text-[18px] md:text-[20px] lg:text-[24px] leading-[32px]">
-                  {item.company}
-                </h3>
+                <Link href={`${item.link}`} target="_blank">
+                  <h3 className="text-[18px] md:text-[20px] lg:text-[24px] leading-[32px]">
+                    {item.company}
+                  </h3>
+                </Link>
                 <h5 className="text-[14px] md:text-[16px]">{item.date}</h5>
               </div>
             </div>
