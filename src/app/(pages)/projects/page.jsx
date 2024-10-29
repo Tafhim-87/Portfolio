@@ -4,7 +4,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <ProjectHero />
       <ProjectCards />
     </div>
