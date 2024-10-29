@@ -20,6 +20,10 @@ const Navbar = () => {
   const ref4 = useRef();
   const ref5 = useRef();
   const ref6 = useRef();
+  const ref7 = useRef();
+  const ref8 = useRef();
+  const ref9 = useRef();
+  const ref10 = useRef();
 
   // GSAP animation
   useGSAP(() => {
@@ -90,7 +94,7 @@ const Navbar = () => {
               <FiX onClick={toggleMenu} className="cursor-pointer" size={30} />
             </div>
             <Link
-              ref={ref2}
+              ref={ref7}
               className={pathname === "/" ? "active-1" : ""}
               onClick={() => {
                 setMenuBar((prev) => !prev);
@@ -100,7 +104,7 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              ref={ref4}
+              ref={ref8}
               href="/about-us"
               onClick={() => {
                 setMenuBar((prev) => !prev);
@@ -110,7 +114,7 @@ const Navbar = () => {
               About us
             </Link>
             <Link
-              ref={ref5}
+              ref={ref8}
               href="/projects"
               onClick={() => {
                 setMenuBar((prev) => !prev);
@@ -120,7 +124,7 @@ const Navbar = () => {
               Projects
             </Link>
             <Link
-              ref={ref6}
+              ref={ref10}
               href="/contact"
               onClick={() => {
                 setMenuBar((prev) => !prev);
