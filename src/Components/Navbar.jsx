@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import "@/Components/nav.css";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
@@ -65,7 +65,7 @@ const Navbar = () => {
               href="/about-us"
               className={pathname === "/about-us" ? "active" : ""}
             >
-              About us
+              About me
             </Link>
             <Link
               ref={ref5}
@@ -74,13 +74,13 @@ const Navbar = () => {
             >
               Projects
             </Link>
-            <Link
+            {/* <Link
               ref={ref6}
               href="/contact"
               className={pathname === "/contact" ? "active" : ""}
             >
               Contact
-            </Link>
+            </Link> */}
           </div>
           {/* For Desktop */}
 
@@ -123,7 +123,7 @@ const Navbar = () => {
             >
               Projects
             </Link>
-            <Link
+            {/* <Link
               ref={ref10}
               href="/contact"
               onClick={() => {
@@ -132,7 +132,7 @@ const Navbar = () => {
               className={pathname === "/contact" ? "active-1" : ""}
             >
               Contact
-            </Link>
+            </Link> */}
 
             <Link href="/">
               <button
@@ -149,7 +149,10 @@ const Navbar = () => {
             <TfiAlignLeft onClick={toggleMenu} className="cursor-pointer" />
           </div>
 
-          <Link href="/">
+          <Link
+            href="https://www.linkedin.com/in/tafhim-hasan-20349a21a/"
+            target="_blank"
+          >
             <button
               ref={ref3}
               className="hidden lg:block text-[14px] leading-[24px] active:scale-105 bg-transparent border-2 border-white px-[24px] py-2 rounded-full"

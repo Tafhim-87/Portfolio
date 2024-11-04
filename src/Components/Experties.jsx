@@ -24,7 +24,7 @@ const Experties = () => {
     },
     {
       title: "GSAP",
-      disc: "Expert in creating seamless, high-performance animations that enhance user experience using the GSAP library.",
+      disc: "Expert in creating seamless, high-performance 2d animations that enhance user experience using the GSAP library.",
     },
   ];
 

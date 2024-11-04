@@ -52,30 +52,30 @@ const ProjectCards = () => {
           return (
             <div
               key={index}
-              className="card1 relative w-[360px] md:w-[780px] lg:w-[1240px] h-[150px] md:h-[390px] lg:h-[493px] bg-[#CBCBCB]/40 rounded-[40px] p-[10px] lg:p-[32px] flex items-center gap-[15px] lg:gap-[32px] overflow-hidden"
+              className="card1 relative w-[360px] md:w-[780px] lg:w-[1240px]  bg-[#CBCBCB]/40 rounded-[40px] p-[10px] lg:p-[32px] flex items-center gap-[15px] lg:gap-[32px] overflow-hidden"
             >
               <div className="w-[150px] h-[115px] bg-[#FF804A] rounded-full absolute blur-[100px] z-[-1px] mt-[15rem] ml-[42rem]"></div>
-              <div className="w-[250px] md:w-[572px] h-[110px] md:h-[310px] lg:h-[429px] bg-[#CBCBCB] rounded-[24px] z-[3px] overflow-hidden">
+              <div className="container h-[110px] md:h-[310px] lg:h-[429px] bg-[#CBCBCB] rounded-[24px] z-[3px] overflow-hidden">
                 <Image
-                  className="w-[100%] h-[100%] object-contain"
+                  className="w-[100%] h-[100%] object-cover"
                   src={item.image}
                   alt="link"
                   width={1300}
                   height={1300}
                 />
               </div>
-              <div className="w-[390px] md:w-[572px] overflow-y-auto lg:overflow-hidden h-[150px] md:h-[390px] lg:h-[429px] flex flex-col justify-center md:justify-between">
-                <div className="flex flex-col gap-[16px]">
-                  <h1 className="text-[26px] md:text-[38px] lg:text-[40px] font-semibold">
+              <div className="container overflow-y-auto lg:overflow-hidden  flex flex-col justify-center md:justify-between">
+                <div className="flex flex-col gap-[4px] md:gap-[16px] overflow-y-auto lg:overflow-hidden">
+                  <h1 className="text-[16px] md:text-[38px] lg:text-[40px] font-semibold">
                     {item.title}
                   </h1>
-                  <h3 className="text-[12px] md:text-[20px] lg:text-[22px]">
+                  <h3 className="text-[8px] md:text-[20px] lg:text-[22px]">
                     {item.disc}
                   </h3>
                   <Link
                     href={`${item.link}`}
                     target="_blank"
-                    className="text-[12px] bg-transparent w-[67px] hidden md:flex justify-center items-center active:scale-105 py-[8px] px-[24px] border-[1px] border-[#ffffff] rounded-full"
+                    className="text-[12px] md:text-[22px] bg-transparent container flex justify-center items-center active:scale-105 py-[8px] md:py-[16px] px-[24px] md:px-[40px] border-[1px] border-[#ffffff] rounded-full hover:bg-[#CBCBCB]/20 transition-all duration-300 ease-in-out"
                   >
                     Web
                   </Link>

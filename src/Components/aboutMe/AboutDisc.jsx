@@ -8,19 +8,12 @@ const AboutDisc = () => {
           About me
         </h1>
         <h3 className="text-[12px] md:text-[14px] lg:text-[16px] w-full">
-          My journey in the world of technology and product design has been an
-          exhilarating adventure. I specialize in crafting user-centered
-          experiences that not only look great but function flawlessly. I
-          believe in the power of collaboration and constant learning. I thrive
-          in multidisciplinary teams and am always eager to explore new
-          technologies and design methodologies. When I am not immersed in
-          pixels and prototypes, you can find me in the great outdoors, seeking
-          inspiration from nature and the world around me. I believe in the
-          power of collaboration and constant learning. I thrive in
-          multidisciplinary teams and am always eager to explore new
-          technologies and design methodologies. When I am not immersed in
-          pixels and prototypes, you can find me in the great outdoors, seeking
-          inspiration from nature and the world around me.
+          I am a front-end web developer. I specialize in building responsive,
+          user-friendly websites and applications. Proficient in HTML, CSS, and
+          JavaScript, and experience using library like React to create dynamic,
+          visually appealing interfaces. Passionate about optimizing user
+          experiences and staying up-to-date with the latest trends in web
+          development.
         </h3>
       </div>
     </div>

@@ -63,7 +63,7 @@ const Work = () => {
         <h1 className="text-[28px] md:text-[38px] lg:text-[50px] font-bold">
           Work
         </h1>
-        <Link href={"/"}>view all</Link>
+        <Link href={"/projects"}>view all</Link>
       </div>
 
       {/* Card */}

@@ -142,14 +142,14 @@ const Hero = () => {
           </div>
         </div>
         {/* Hero footer */}
-        <div className="flex flex-col lg:flex-row justify-between items-center mt-[112px] w-[390px] md:w-[564px] lg:w-[1240px] px-[20px] md:px-0 gap-[32px]">
+        <div className="flex flex-col lg:flex-row justify-between items-center mt-[112px] container px-[20px] md:px-0 gap-[32px]">
           <div className="flex w-[350px] lg:w-[716px] justify-between items-center">
             <div className="overflow-hidden">
               <h1
                 ref={ref4}
                 className="bounding text-[14px] md:text-[16px] lg:text-[25px]"
               >
-                doradesign
+                JavaScript
               </h1>
             </div>
             <div className="overflow-hidden">
@@ -157,7 +157,7 @@ const Hero = () => {
                 ref={ref5}
                 className="bounding text-[14px] md:text-[16px] lg:text-[25px]"
               >
-                wave
+                ReactJs
               </h1>
             </div>
             <div className="overflow-hidden">
@@ -165,7 +165,7 @@ const Hero = () => {
                 ref={ref6}
                 className="bounding text-[14px] md:text-[16px] lg:text-[25px]"
               >
-                SILSILA
+                NextJs
               </h1>
             </div>
           </div>
