@@ -4,9 +4,15 @@ import Link from "next/link";
 const Experience = () => {
   let data = [
     {
-      position: "Frontend Developer",
+      position: "Frontend Developer Intern",
+      company: "Code Valy",
+      date: "01/02/2025 - running",
+      link: "https://codevaly.com/",
+    },
+    {
+      position: "Frontend Developer Intern",
       company: "Acronation",
-      date: "10/24/2024 - running",
+      date: "10/24/2024 - 01/30/2025",
       link: "https://acronation.net/",
     },
   ];
