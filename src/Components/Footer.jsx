@@ -23,7 +23,7 @@ const Footer = () => {
           <h3>© Tsfhim Hasan - 2024</h3>
           <div className="flex items-center gap-[32px]">
             <Link
-              href={"https://www.linkedin.com/in/tafhim-hasan-20349a21a/"}
+              href={"https://www.linkedin.com/in/tafhim-hasan-329677371/"}
               target="_blank"
               className="text-[#ffffff]/80 hover:text-[#ffffff]"
             >
