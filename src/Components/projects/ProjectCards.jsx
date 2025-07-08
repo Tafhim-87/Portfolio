@@ -3,11 +3,12 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import image1 from "@/public/project-1.png";
-import image2 from "@/public/project-2.png";
-import image3 from "@/public/project-6.png";
-import image4 from "@/public/project-4.png";
-import image5 from "@/public/project-5.png";
+import image1 from "@/public/seenyor.png";
+import image2 from "@/public/bms.png";
+import image3 from "@/public/safyzone.png";
+import image4 from "@/public/panda.png";
+import image5 from "@/public/acronation.png";
+import image6 from "@/public/task.png";
 
 const ProjectCards = () => {
   let data = [

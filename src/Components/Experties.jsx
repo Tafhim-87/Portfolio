@@ -19,8 +19,8 @@ const Experties = () => {
       disc: "Proficient in building fully responsive, mobile-friendly web layouts quickly and efficiently using Tailwind’s utility-first approach.",
     },
     {
-      title: "ReactJS",
-      disc: "Specialize in developing dynamic, efficient user interfaces using React's component-based architecture.",
+      title: "NextJS",
+      disc: "A React framework for server-rendered and static web apps. It's great for fast, SEO-friendly websites with an excellent dev experience.",
     },
     {
       title: "GSAP",
