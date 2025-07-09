@@ -3,113 +3,144 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import image1 from "@/public/web person.jpg";
+import image3 from "@/public/codevely.png";
 import image2 from "@/public/quote.png";
 import icnBtnR from "@/public/Frame.png";
 import icnBtnL from "@/public/Frameleft.png";
 
-const Testomonial = () => {
-  const [left, setLeft] = useState(0);
+const Testimonial = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const data = [
     {
-      img: image1,
+      img: image3,
       name: "John Doe",
       userName: "@johndoe",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+      text: "Working with Tafhim has been a fantastic experience. As a Frontend Developer at Code Vely, he consistently delivered his projects on time and with great attention to detail. His creative thinking and problem-solving approach added real value to our team. Tafhim doesn't just write code—he brings ideas to life with clarity and vision.",
     },
     {
       img: image1,
-      name: "John Doe",
-      userName: "@johndoe",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+      name: "Jane Smith",
+      userName: "@janesmith",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.",
     },
   ];
 
-  function moveRight() {
-    setLeft((prevLeft) =>
-      prevLeft === (data.length - 1) * -100 ? 0 : prevLeft - 100
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === data.length - 1 ? 0 : prevIndex + 1
     );
-  }
-  function moveLeft() {
-    setLeft((prevLeft) => (prevLeft === 0 ? 0 : prevLeft + 100));
-  }
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? data.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
-      <div className="flex flex-col gap-[32px] py-[64px] px-5 lg:px-[100px] max-w-[1440px] w-[380px] md:w-[780px] lg:w-[1440px]">
-        <h1 className="text-[28px] md:text-[38px] lg:text-[50px] font-bold">
+    <div className="flex flex-col items-center justify-center w-full lg:px-8 py-12 md:py-16 lg:py-24">
+      <div className="w-full max-w-7xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12">
           What they say
         </h1>
 
-        {/* Card for review */}
-
-        <div className="flex w-[380px] md:w-[780px] lg:w-[1220px] overflow-hidden">
-          {data.map((elem, indx) => {
-            return (
-              <div
-                key={indx}
-                className={`card relative w-[380px] md:w-[780px] lg:w-[1240px] h-[264px] py-[16px] flex items-center gap-2 md:gap-[32px] transition-transform duration-300`}
-                style={{ transform: `translateX(${left}%)` }}
+        {/* Testimonial Carousel */}
+        <div className="relative w-full overflow-hidden">
+          <div 
+            className="flex transition-transform duration-300 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {data.map((testimonial, index) => (
+              <div 
+                key={index}
+                className="w-full flex-shrink-0 px-4"
               >
-                <Image
-                  src={image2}
-                  className="absolute ml-[165px] md:ml-[313px] lg:ml-[31rem] mb-[12rem] w-[40px] md:w-[80px] lg:w-[100px]"
-                  alt="quote"
-                  width={100}
-                  height={100}
-                />
-                <div className=" w-[210px] md:w-[498px] gap-[16px] flex mb-[8.3rem]">
+                <div className="relative bg-black rounded-xl p-6 md:p-8 lg:p-10 shadow-lg">
                   <Image
-                    className="w-[64px] h-[64px] rounded-full object-cover"
-                    src={elem.img}
-                    alt="link"
-                    width={100}
-                    height={100}
+                    src={image2}
+                    className="absolute top-6 right-6 md:right-8 w-8 md:w-12 opacity-60"
+                    alt="quote"
+                    width={48}
+                    height={48}
                   />
-                  <div>
-                    <h1 className="text-[16px] md:text-[24px] leading-[32px] font-semibold">
-                      {elem.name}
-                    </h1>
-                    <h4 className="text-[16px] md:text-[18px] text-[#ffffff]/40">
-                      {elem.userName}
-                    </h4>
+                  
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                    <div className="flex items-center gap-4 md:gap-6">
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden">
+                        <Image
+                          src={testimonial.img}
+                          alt={testimonial.name}
+                          layout="fill"
+                          objectFit="cover"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="text-lg md:text-xl font-semibold">
+                          {testimonial.name}
+                        </h2>
+                        <p className="text-sm md:text-base text-white/60">
+                          {testimonial.userName}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1">
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
+                        {testimonial.text}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="w-[250px] md:w-[700px] h-[200px]">
-                  <h4 className="text-[14px] md:text-[30px] md:leading-[40px] flex justify-start">
-                    {elem.text}
-                  </h4>
-                </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* Card for review */}
-
-        <div className="flex justify-center gap-[16px] w-full">
-          <button onClick={moveLeft} className="py-1 px-2">
+        {/* Navigation Controls */}
+        <div className="flex justify-center gap-4 mt-8 md:mt-12">
+          <button 
+            onClick={prevSlide}
+            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            aria-label="Previous testimonial"
+          >
             <Image
-              className="w-[64px] h-[64px] rounded-full object-cover active:scale-105"
               src={icnBtnL}
-              alt="btn"
-              width={100}
-              height={100}
+              alt="Previous"
+              width={48}
+              height={48}
+              className="w-12 h-12 md:w-16 md:h-16"
             />
           </button>
-          <button onClick={moveRight} className="py-1 px-2">
+          <button 
+            onClick={nextSlide}
+            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            aria-label="Next testimonial"
+          >
             <Image
-              className="w-[64px] h-[64px] rounded-full object-cover active:scale-105"
               src={icnBtnR}
-              alt="btn"
-              width={700}
-              height={700}
+              alt="Next"
+              width={48}
+              height={48}
+              className="w-12 h-12 md:w-16 md:h-16"
             />
           </button>
+        </div>
+
+        {/* Indicator Dots */}
+        <div className="flex justify-center gap-2 mt-6">
+          {data.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex ? 'bg-white' : 'bg-white/30'}`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default Testomonial;
+export default Testimonial;

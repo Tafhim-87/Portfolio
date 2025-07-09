@@ -8,7 +8,6 @@ import Experties from "@/Components/Experties";
 import Work from "@/Components/Work";
 import Experience from "@/Components/Experience";
 import Testomonial from "@/Components/Testomonial";
-import { Card } from "@/Components/Card";
 
 const Page = () => {
   useEffect(() => {

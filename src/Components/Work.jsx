@@ -14,6 +14,7 @@ import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import "@/Components/hero.css";
 
 const Work = () => {
   let data = [
@@ -49,7 +50,7 @@ const Work = () => {
     },
     {
       image: image6,
-      title: "Ai Task Manegment System",
+      title: "Ai Task Management System",
       disc: "With user-centered approach, the goals was to create an intuitive",
       link: "https://task-management-rho-lilac.vercel.app/",
     },
@@ -57,27 +58,26 @@ const Work = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
-      <div className="flex justify-between items-center py-6 md:py-[64px] px-5 lg:px-[100px] max-w-[1440px] w-[380px] md:w-[780px] lg:w-[1440px]">
+      <div className="flex justify-between items-center py-6 md:py-[64px] px-5 lg:px-[100px] max-w-[1440px] container">
         <h1 className="text-[28px] md:text-[38px] lg:text-[50px] font-bold">
           Projects
         </h1>
-        <Link href={"/projects"}>view all</Link>
+        <Link href={"/projects"} className="text-blue-600 hover:underline">
+          view all
+        </Link>
       </div>
 
       {/* Card */}
-
-      <div className="hidden md:flex flex-wrap gap-5 justify-center items-center px-5 container">
-        {data.map((item, index) => {
-          return (
-            <Card
-              key={index}
-              image={item.image}
-              title={item.title}
-              description={item.disc}
-              link={item.link}
-            />
-          );
-        })}
+      <div className="hidden md:flex flex-wrap gap-5 justify-center lg:justify-between items-center px-5 container">
+        {data.map((item, index) => (
+          <Card
+            key={index}
+            image={item.image}
+            title={item.title}
+            description={item.disc}
+            link={item.link}
+          />
+        ))}
       </div>
       {/* Swiper Coverflow Carousel */}
       <div className="w-full flex md:hidden px-5">
@@ -96,17 +96,6 @@ const Work = () => {
           autoplay={{
             delay: 1500,
             disableOnInteraction: false,
-          }}
-          breakpoints={{
-            640: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
           }}
           modules={[EffectCoverflow, Pagination, Autoplay]}
           className="mySwiper max-w-[1200px]"

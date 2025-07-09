@@ -41,7 +41,7 @@ export function Card({ title, description, image, link }) {
             target="__blank"
             className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
           >
-            Try now →
+            Visit Project →
           </CardItem>
         </div>
       </CardBody>
