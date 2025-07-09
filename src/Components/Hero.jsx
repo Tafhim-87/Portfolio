@@ -19,6 +19,7 @@ const Hero = () => {
   const ref6 = useRef();
   const ref7 = useRef();
   const tilt = useRef();
+  
   useGSAP(() => {
     const tl = gsap.timeline();
     tl.from(ref1.current, {
@@ -93,29 +94,28 @@ const Hero = () => {
       xVal / 80
     }deg)`;
   }
+
   return (
     <div
       onMouseMove={(e) => {
         mouseMoving(e);
       }}
-      className="w-full h-full flex justify-center items-center py-[76px] lg:py-[100px] px-[100px]"
+      className="w-full h-full py-16 lg:py-24 px-4 sm:px-6 md:px-8"
     >
-      <div id="realHead" className="w-[1240px]">
+      <div className="container mx-auto max-w-7xl">
         {/* Hero Title */}
-
         <div
           ref={tilt}
-          id="head"
           className="relative flex items-center flex-col"
         >
-          <div className="overflow-hidden">
+          <div className="overflow-hidden w-full">
             <h1
               ref={ref1}
-              className="bounding text-[24px] md:text-[42px] lg:text-[64px] leading-1.2 lg:leading-[80px] tracking-widest font-bold lg:font-extrabold uppercase text-center flex items-center justify-center"
+              className="bounding text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight lg:leading-[80px] tracking-wider font-bold lg:font-extrabold uppercase text-center flex items-center justify-center flex-wrap gap-2"
             >
               i am a
               <Image
-                className="w-[50px] md:w-[80px] lg:w-[128px] h-[32px] md:h-[48px] lg:h-[64px] rounded-full object-cover "
+                className="w-12 h-8 sm:w-16 sm:h-10 md:w-20 md:h-12 lg:w-32 lg:h-16 rounded-full object-cover"
                 src={image1}
                 alt="link"
                 width={700}
@@ -124,30 +124,31 @@ const Hero = () => {
               frontend
             </h1>
           </div>
-          <div className="overflow-hidden">
+          <div className="overflow-hidden w-full">
             <h1
               ref={ref2}
-              className="bounding text-[24px] md:text-[42px] lg:text-[64px] leading-1.2 lg:leading-[80px] tracking-widest font-bold lg:font-extrabold uppercase text-center flex"
+              className="bounding text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight lg:leading-[80px] tracking-wider font-bold lg:font-extrabold uppercase text-center"
             >
               developer from
             </h1>
           </div>
-          <div className="overflow-hidden">
+          <div className="overflow-hidden w-full">
             <h1
               ref={ref3}
-              className="bounding text-[24px] md:text-[42px] lg:text-[64px] leading-1.2 lg:leading-[80px] tracking-widest font-bold lg:font-extrabold uppercase text-center flex"
+              className="bounding text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight lg:leading-[80px] tracking-wider font-bold lg:font-extrabold uppercase text-center"
             >
               bangladesh
             </h1>
           </div>
         </div>
+        
         {/* Hero footer */}
-        <div className="flex flex-col lg:flex-row justify-between items-center mt-[112px] container px-[20px] md:px-0 gap-[32px]">
-          <div className="flex w-[350px] lg:w-[716px] justify-between items-center">
+        <div className="flex flex-col lg:flex-row justify-between items-center mt-16 sm:mt-20 md:mt-24 lg:mt-28 gap-6 sm:gap-8">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 w-full lg:w-auto">
             <div className="overflow-hidden">
               <h1
                 ref={ref4}
-                className="bounding text-[14px] md:text-[16px] lg:text-[25px]"
+                className="bounding text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
               >
                 JavaScript
               </h1>
@@ -155,7 +156,7 @@ const Hero = () => {
             <div className="overflow-hidden">
               <h1
                 ref={ref5}
-                className="bounding text-[14px] md:text-[16px] lg:text-[25px]"
+                className="bounding text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
               >
                 ReactJs
               </h1>
@@ -163,7 +164,7 @@ const Hero = () => {
             <div className="overflow-hidden">
               <h1
                 ref={ref6}
-                className="bounding text-[14px] md:text-[16px] lg:text-[25px]"
+                className="bounding text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
               >
                 NextJs
               </h1>
@@ -171,7 +172,7 @@ const Hero = () => {
           </div>
           <p
             ref={ref7}
-            className=" lg:w-[492px] text-center lg:text-start text-[12px] lg:text-[16px] leading-[24px]"
+            className="text-xs sm:text-sm md:text-base lg:text-lg text-center lg:text-left max-w-md lg:max-w-lg xl:max-w-xl leading-relaxed"
           >
             Welcome to my portfolio. Here, artistry meets functionality. Dive
             into a curated showcase of distinctive branding and web designs,

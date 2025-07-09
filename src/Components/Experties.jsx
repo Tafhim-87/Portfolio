@@ -16,7 +16,7 @@ const Experties = () => {
     },
     {
       title: "Tailwind CSS",
-      disc: "Proficient in building fully responsive, mobile-friendly web layouts quickly and efficiently using Tailwind’s utility-first approach.",
+      disc: "Proficient in building fully responsive, mobile-friendly web layouts quickly and efficiently using Tailwind's utility-first approach.",
     },
     {
       title: "NextJS",
@@ -29,7 +29,6 @@ const Experties = () => {
   ];
 
   const ref1 = useRef();
-
   const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
 
   useGSAP(() => {
@@ -44,33 +43,30 @@ const Experties = () => {
           start: "top 50%",
         },
       });
-    } else {
-      console.log("its mobile");
     }
   });
 
   return (
-    <div ref={ref1} className="w-full flex items-center justify-center">
-      <div className="max-w-[1440px] w-[540px] md:w-[1440px] py-[64px] px-[100px] flex flex-col gap-[32px] ">
-        <h1 className="text-[28px] md:text-[38px] lg:text-[50px] font-bold">
-          Experties
+    <div ref={ref1} className="w-full py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
+      <div className="container mx-auto max-w-7xl">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 md:mb-10">
+          Expertise
         </h1>
-        <div className="flex flex-wrap gap-[30px] lg:gap-[64px] justify-between">
-          {data.map((item, index) => {
-            return (
-              <div
-                className=" card w-[370px] md:w-[588px] flex flex-col gap-[16px]"
-                key={index}
-              >
-                <li className="md:text-[24px] lg:text-[26px] font-semibold md:font-bold">
-                  {item.title}
-                </li>
-                <h3 className="text-[12px] md:text-[20px] lg:text-[22px]">
-                  {item.disc}
-                </h3>
-              </div>
-            );
-          })}
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+          {data.map((item, index) => (
+            <div
+              className="card bg-black p-4 sm:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              key={index}
+            >
+              <li className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4 list-none">
+                {item.title}
+              </li>
+              <p className="text-sm sm:text-base md:text-lg text-gray-300 dark:text-gray-300">
+                {item.disc}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
