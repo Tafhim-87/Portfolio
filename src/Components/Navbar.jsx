@@ -67,13 +67,13 @@ const Navbar = () => {
             >
               About me
             </Link>
-            {/* <Link
+            <Link
               ref={ref5}
               href="/projects"
               className={pathname === "/projects" ? "active" : ""}
             >
               Projects
-            </Link> */}
+            </Link>
             {/* <Link
               ref={ref6}
               href="/contact"

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import image1 from "@/public/web person.jpg";
+import image1 from "@/public/acrologo.png";
 import image3 from "@/public/codevely.png";
 import image2 from "@/public/quote.png";
 import icnBtnR from "@/public/Frame.png";
@@ -14,15 +14,15 @@ const Testimonial = () => {
   const data = [
     {
       img: image3,
-      name: "John Doe",
-      userName: "@johndoe",
-      text: "Working with Tafhim has been a fantastic experience. As a Frontend Developer at Code Vely, he consistently delivered his projects on time and with great attention to detail. His creative thinking and problem-solving approach added real value to our team. Tafhim doesn't just write code—he brings ideas to life with clarity and vision.",
+      name: "Codevely",
+      userName: "@codevely-team",
+      text: "Working with Tafhim Hasan at Codevely has been excellent. As a Frontend Web Developer, Hi's creative thinking and reliable time management ensure tasks are always completed on time. He consistently deliver highly responsive designs, enhancing user experience across all platforms. Hi's dedication and professionalism is truly valued.",
     },
     {
       img: image1,
-      name: "Jane Smith",
-      userName: "@janesmith",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.",
+      name: "Acronation",
+      userName: "@acronation-team",
+      text: "As a Frontend Web Developer at Acronation, Tafhim Hasan is invaluable. Hi's excellent time management and creative thinking ensure projects are completed on time. Hi's consistently deliver high-quality, responsive designs, providing an excellent user experience. We appreciate Hi's commitment.",
     },
   ];
 
