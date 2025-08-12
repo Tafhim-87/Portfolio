@@ -113,7 +113,7 @@ const Navbar = () => {
             >
               About us
             </Link>
-            {/* <Link
+            <Link
               ref={ref8}
               href="/projects"
               onClick={() => {
@@ -122,7 +122,7 @@ const Navbar = () => {
               className={pathname === "/projects" ? "active-1" : ""}
             >
               Projects
-            </Link> */}
+            </Link>
             {/* <Link
               ref={ref10}
               href="/contact"
