@@ -11,6 +11,7 @@ import image3 from "@/public/safyzone.png";
 import image4 from "@/public/panda.png";
 import image5 from "@/public/acronation.png";
 import image6 from "@/public/task.png";
+import image7 from "@/public/ModResturent.png";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -55,6 +56,11 @@ const ProjectCards = () => {
       title: "AI Task Management",
       disc: "Smart productivity tool that uses artificial intelligence to optimize your workflow and task prioritization.",
       link: "https://task-management-rho-lilac.vercel.app/",
+    },{
+      image: image7,
+      title: "Modern Restaurant",
+      disc: "A sleek and contemporary restaurant website design that highlights the menu, ambiance, and reservation options. With AI integration.",
+      link: "https://restaurant-order-tau.vercel.app/",
     },
   ];
 

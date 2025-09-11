@@ -11,19 +11,19 @@ gsap.registerPlugin(ScrollTrigger);
 const Experties = () => {
   let data = [
     {
-      title: "HTML & CSS",
-      disc: "Proficient in structuring and styling web applications with a strong understanding of responsive design principles.",
-    },
-    {
-      title: "Tailwind CSS",
-      disc: "Proficient in building fully responsive, mobile-friendly web layouts quickly and efficiently using Tailwind's utility-first approach.",
-    },
-    {
       title: "NextJS",
       disc: "A React framework for server-rendered and static web apps. It's great for fast, SEO-friendly websites with an excellent dev experience.",
     },
     {
-      title: "GSAP",
+      title: "NodeJS",
+      disc: "A JavaScript runtime for building fast, scalable server-side applications. Perfect for real-time apps and APIs.",
+    },
+    {
+      title: "MongoDB & MySQL",
+      disc: "Experienced in both NoSQL (MongoDB) and SQL (MySQL) databases for flexible and structured data management.",
+    },
+    {
+      title: "gSAP",
       disc: "Expert in creating seamless, high-performance 2d animations that enhance user experience using the GSAP library.",
     },
   ];

@@ -3,10 +3,10 @@
 import Link from "next/link";
 import image1 from "@/public/seenyor.png";
 import image2 from "@/public/bms.png";
-import image3 from "@/public/safyzone.png";
+import image6 from "@/public/safyzone.png";
 import image4 from "@/public/panda.png";
 import image5 from "@/public/acronation.png";
-import image6 from "@/public/task.png";
+import image3 from "@/public/ModResturent.png";
 import { Card } from "./Card";
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -30,11 +30,12 @@ const Work = () => {
       disc: "With user-centered approach, the goals was to create an intuitive",
       link: "https://bms-robotics.vercel.app/",
     },
+
     {
       image: image3,
-      title: "Safyzone",
-      disc: "With user-centered approach, the goals was to create an intuitive",
-      link: "https://safyzone.vercel.app/",
+      title: "Modern Restaurant",
+      disc: "A sleek and contemporary restaurant website design that highlights the menu, ambiance, and reservation options. With AI integration.",
+      link: "https://restaurant-order-tau.vercel.app/",
     },
     {
       image: image4,
@@ -50,9 +51,9 @@ const Work = () => {
     },
     {
       image: image6,
-      title: "Ai Task Management System",
+      title: "Safyzone",
       disc: "With user-centered approach, the goals was to create an intuitive",
-      link: "https://task-management-rho-lilac.vercel.app/",
+      link: "https://safyzone.vercel.app/",
     },
   ];
 
