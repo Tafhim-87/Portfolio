@@ -131,7 +131,7 @@ const AboutHero = () => {
           </h1>
           
           <p className="mt-6 text-lg text-gray-300 max-w-xl mx-auto lg:mx-0">
-            Passionate frontend developer crafting immersive digital experiences with modern technologies. 
+            Passionate Full Stack Developer crafting immersive digital experiences with modern technologies. 
             Based in Bangladesh, bringing ideas to life through code and creativity.
           </p>
           

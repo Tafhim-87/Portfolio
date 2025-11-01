@@ -1,382 +1,432 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import image1 from "@/public/web person.jpg";
 
-const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [activeTech, setActiveTech] = useState(null);
-  const [isMounted, setIsMounted] = useState(false);
+/* ------------------------------------------------------------------ */
+/* 1. Loading Screen                                                  */
+/* ------------------------------------------------------------------ */
+const Loader = () => {
+  const [progress, setProgress] = useState(0);
 
-  const ref1 = useRef();
-  const ref2 = useRef();
-  const ref3 = useRef();
-  const ref4 = useRef();
-  const ref5 = useRef();
-  const ref6 = useRef();
-  const ref7 = useRef();
-  const tilt = useRef();
-  const canvasRef = useRef();
-  const particlesRef = useRef([]);
-  const techRefs = [useRef(), useRef(), useRef()];
-
-  // Initialize after component mounts
   useEffect(() => {
-    setIsMounted(true);
+    const interval = setInterval(() => {
+      setProgress((prev) => (prev >= 100 ? 100 : prev + 3));
+    }, 12);
+
+    const timeout = setTimeout(() => clearInterval(interval), 1100);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
   }, []);
 
-  // Mouse position tracker
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      });
-    };
+  return (
+    <motion.div 
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a12]"
+    >
+      <div className="relative w-56 h-56">
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="absolute inset-0 rounded-full border-4 border-purple-600/30"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute inset-0 rounded-full border-4 border-indigo-500/50"
+        />
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+        <div className="flex flex-col items-center justify-center h-full space-y-4">
+          <motion.h3 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="text-2xl font-bold text-white"
+          >
+            Loading…
+          </motion.h3>
+          <div className="w-40 h-2 bg-gray-800 rounded-full overflow-hidden">
+            <motion.div
+              initial={{ width: "0%" }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 1 }}
+              className="h-full bg-gradient-to-r from-indigo-500 to-purple-600"
+            />
+          </div>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-sm text-gray-400"
+          >
+            {progress}%
+          </motion.p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
-  // Particle animation with Three.js
-  useEffect(() => {
-    if (!isMounted) return;
+/* ------------------------------------------------------------------ */
+/* 2. Animated Title Component with Hover Effects                    */
+/* ------------------------------------------------------------------ */
+const AnimatedTitle = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const titleLines = [
+    { text: "I AM A", gradient: "from-indigo-400 via-purple-500 to-pink-500" },
+    { text: "FULL STACK", gradient: "from-white to-white" },
+    { text: "DEVELOPER", gradient: "from-green-400 to-blue-600" },
+  ];
 
-    const initParticles = async () => {
-      const THREE = await import("three");
-
-      // Scene setup
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ 
-        canvas: canvasRef.current,
-        alpha: true,
-        antialias: true
-      });
-      
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      
-      // Create particles
-      const particleCount = 100;
-      const particles = new THREE.Group();
-      scene.add(particles);
-      
-      const particleGeometry = new THREE.SphereGeometry(0.05, 10, 10);
-      const particleMaterial = new THREE.MeshPhongMaterial({
-        color: 0x6366f1,
-        shininess: 100
-      });
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = new THREE.Mesh(particleGeometry, particleMaterial);
-        
-        // Random position
-        particle.position.x = (Math.random() - 0.5) * 10;
-        particle.position.y = (Math.random() - 0.5) * 10;
-        particle.position.z = (Math.random() - 0.5) * 10;
-        
-        // Random velocity
-        particle.userData = {
-          velocity: {
-            x: (Math.random() - 0.5) * 0.01,
-            y: (Math.random() - 0.5) * 0.01,
-            z: (Math.random() - 0.5) * 0.01
-          },
-          amplitude: Math.random() * 0.1 + 0.05,
-          frequency: Math.random() * 0.1 + 0.01
-        };
-        
-        particles.add(particle);
-        particlesRef.current.push(particle);
+  const containerVariants = {
+    normal: {
+      transition: {
+        staggerChildren: 0.1
       }
-      
-      // Add lights
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-      scene.add(ambientLight);
-      
-      const directionalLight = new THREE.DirectionalLight(0x4f46e5, 1);
-      directionalLight.position.set(5, 5, 5);
-      scene.add(directionalLight);
-      
-      // Position camera
-      camera.position.z = 5;
-      
-      // Animation
-      const clock = new THREE.Clock();
-      
-      const animate = () => {
-        requestAnimationFrame(animate);
-        
-        const elapsedTime = clock.getElapsedTime();
-        
-        // Animate particles
-        particlesRef.current.forEach(particle => {
-          particle.position.x += Math.sin(elapsedTime * particle.userData.frequency) * particle.userData.amplitude;
-          particle.position.y += Math.cos(elapsedTime * particle.userData.frequency) * particle.userData.amplitude;
-          particle.position.z += particle.userData.velocity.z;
-          
-          // Boundary check
-          if (Math.abs(particle.position.x) > 5) particle.userData.velocity.x *= -1;
-          if (Math.abs(particle.position.y) > 5) particle.userData.velocity.y *= -1;
-          if (Math.abs(particle.position.z) > 5) particle.userData.velocity.z *= -1;
-        });
-        
-        // Rotate entire particle system
-        particles.rotation.x += 0.001;
-        particles.rotation.y += 0.002;
-        
-        renderer.render(scene, camera);
-      };
-      
-      animate();
-      
-      // Handle resize
-      const handleResize = () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      };
-      
-      window.addEventListener('resize', handleResize);
-      
-      return () => {
-        window.removeEventListener('resize', handleResize);
-        renderer.dispose();
-      };
-    };
-
-    initParticles();
-  }, [isMounted]);
-
-  // GSAP animations
-  useGSAP(() => {
-    const tl = gsap.timeline();
-    
-    // Main text animations
-    tl.from(ref1.current, {
-      y: "100%",
-      duration: 1.2,
-      ease: "power3.out"
-    });
-    tl.from(
-      ref2.current,
-      {
-        y: "100%",
-        duration: 1.2,
-        ease: "power3.out"
-      },
-      "-=0.8"
-    );
-    tl.from(
-      ref3.current,
-      {
-        y: "100%",
-        duration: 1.2,
-        ease: "power3.out"
-      },
-      "-=0.8"
-    );
-    
-    // Tech stack animations
-    tl.from(
-      techRefs.map(ref => ref.current),
-      {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power2.out"
-      },
-      "-=0.5"
-    );
-    
-    // Description animation
-    tl.from(
-      ref7.current,
-      {
-        x: 100,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out"
-      },
-      "-=0.5"
-    );
-  });
-
-  // Mouse tilt effect
-  useEffect(() => {
-    if (!tilt.current) return;
-    
-    const x = (mousePosition.x / window.innerWidth - 0.5) * 20;
-    const y = -(mousePosition.y / window.innerHeight - 0.5) * 20;
-    
-    tilt.current.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg) translateZ(0)`;
-  }, [mousePosition]);
-
-  // Tech hover effect
-  const handleTechHover = (index) => {
-    setActiveTech(index);
-    
-    // Animate the hovered tech
-    gsap.to(techRefs[index].current, {
-      scale: 1.1,
-      color: "#6366f1",
-      duration: 0.3,
-      ease: "power2.out"
-    });
-    
-    // Animate other tech items
-    techRefs.forEach((ref, i) => {
-      if (i !== index && ref.current) {
-        gsap.to(ref.current, {
-          scale: 0.95,
-          color: "#9ca3af",
-          duration: 0.3,
-          ease: "power2.out"
-        });
+    },
+    hover: {
+      transition: {
+        staggerChildren: 0.05
       }
-    });
+    }
   };
 
-  const handleTechLeave = () => {
-    setActiveTech(null);
-    
-    // Reset all tech items
-    techRefs.forEach(ref => {
-      if (ref.current) {
-        gsap.to(ref.current, {
-          scale: 1,
-          color: "#ffffff",
-          duration: 0.3,
-          ease: "power2.out"
-        });
+  const wordVariants = {
+    normal: {
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 20
       }
-    });
+    },
+    hover: {
+      y: -10,
+      scale: 1.05,
+      rotateX: 5,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 15
+      }
+    }
+  };
+
+  const letterVariants = {
+    normal: {
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 20
+      }
+    },
+    hover: {
+      y: [-2, 2, -2],
+      scale: [1, 1.1, 1],
+      transition: {
+        y: {
+          repeat: Infinity,
+          duration: 0.8,
+          ease: "easeInOut"
+        },
+        scale: {
+          repeat: Infinity,
+          duration: 0.8,
+          ease: "easeInOut"
+        }
+      }
+    }
   };
 
   return (
-    <div className="w-full min-h-screen py-16 lg:py-24 px-4 sm:px-6 md:px-8 relative overflow-hidden bg-gradient-to-br from-gray-900 to-[#010208] flex items-center justify-center">
-      {/* Animated background particles */}
-      <canvas 
-        ref={canvasRef} 
-        className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none"
-      />
-      
-      {/* Mouse follower glow */}
-      <div 
-        className="absolute rounded-full pointer-events-none transition-transform duration-300 ease-out"
-        style={{
-          width: "40vw",
-          height: "40vw",
-          background: "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)",
-          left: `${mousePosition.x - 20}vw`,
-          top: `${mousePosition.y - 20}vh`,
-          transform: "translate(-50%, -50%)"
-        }}
-      />
-      
-      <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Hero Title */}
-        <div
-          ref={tilt}
-          className="relative flex items-center flex-col mb-16 transition-transform duration-300 ease-out"
+    <motion.div
+      className="cursor-pointer"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      variants={containerVariants}
+      initial="normal"
+      animate={isHovered ? "hover" : "normal"}
+    >
+      {titleLines.map((line, lineIndex) => (
+        <motion.div
+          key={lineIndex}
+          className={`overflow-hidden ${
+            lineIndex === 1 ? "my-2" : "my-1"
+          }`}
+          variants={wordVariants}
         >
-          <div className="overflow-hidden w-full mb-2">
-            <h1
-              ref={ref1}
-              className="bounding text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight lg:leading-[90px] tracking-tight font-bold uppercase text-center flex items-center justify-center flex-wrap gap-3 text-white"
-            >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-                i am a
-              </span>
-              <Image
-                className="w-16 h-12 sm:w-20 sm:h-14 md:w-24 md:h-16 lg:w-32 lg:h-20 rounded-full object-cover border-2 border-purple-500/30 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-110"
-                src={image1}
-                alt="Profile"
-                width={700}
-                height={700}
-              />
-              <span className="relative">
-                frontend
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></span>
-              </span>
-            </h1>
-          </div>
-          
-          <div className="overflow-hidden w-full mb-2">
-            <h1
-              ref={ref2}
-              className="bounding text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight lg:leading-[90px] tracking-tight font-bold uppercase text-center text-white"
-            >
-              developer from
-            </h1>
-          </div>
-          
-          <div className="overflow-hidden w-full">
-            <h1
-              ref={ref3}
-              className="bounding text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight lg:leading-[90px] tracking-tight font-bold uppercase text-center text-white"
-            >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-600">
-                bangladesh
-              </span>
-            </h1>
-          </div>
-        </div>
-        
-        {/* Hero footer */}
-        <div className="flex flex-col lg:flex-row justify-between items-center mt-28 gap-10">
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8 w-full lg:w-auto">
-            {["JavaScript", "ReactJs", "NextJs"].map((tech, index) => (
-              <div 
-                key={index}
-                ref={techRefs[index]}
-                className="relative overflow-hidden group"
-                onMouseEnter={() => handleTechHover(index)}
-                onMouseLeave={handleTechLeave}
+          <div className="flex justify-center">
+            {line.text.split("").map((letter, letterIndex) => (
+              <motion.span
+                key={`${lineIndex}-${letterIndex}`}
+                className={`inline-block font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl ${
+                  line.gradient.includes("white") 
+                    ? "text-white" 
+                    : "bg-clip-text text-transparent bg-gradient-to-r"
+                } ${line.gradient}`}
+                variants={letterVariants}
+                custom={letterIndex}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
-                <div className="relative z-10 p-3 rounded-lg border border-gray-700 bg-gray-800/50 backdrop-blur-sm group-hover:bg-transparent transition-all duration-300">
-                  <h1
-                    className={`text-lg sm:text-xl md:text-2xl font-medium cursor-pointer transition-all duration-300 ${
-                      activeTech === index ? "text-white" : "text-gray-300"
-                    }`}
-                  >
-                    {tech}
-                  </h1>
-                </div>
-                
-                {/* Hover effect line */}
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-500"></div>
-              </div>
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
             ))}
           </div>
+        </motion.div>
+      ))}
+      
+      {/* Floating particles effect on hover */}
+      {isHovered && (
+        <>
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full pointer-events-none"
+              initial={{
+                opacity: 0,
+                scale: 0,
+                x: Math.random() * 400 - 200,
+                y: Math.random() * 200 - 100,
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+                x: Math.random() * 800 - 400,
+                y: Math.random() * 400 - 200,
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.2,
+                ease: "easeOut"
+              }}
+            />
+          ))}
+        </>
+      )}
+    </motion.div>
+  );
+};
+
+/* ------------------------------------------------------------------ */
+/* 3. Animated Background                                            */
+/* ------------------------------------------------------------------ */
+const AnimatedBackground = () => (
+  <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/10 to-pink-900/20" />
+    
+    {/* Animated gradient orbs */}
+    <motion.div
+      animate={{
+        x: [0, 100, 0],
+        y: [0, -50, 0],
+        scale: [1, 1.1, 1],
+      }}
+      transition={{
+        duration: 20,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+    />
+    <motion.div
+      animate={{
+        x: [0, -80, 0],
+        y: [0, 60, 0],
+        scale: [1, 1.2, 1],
+      }}
+      transition={{
+        duration: 25,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      className="absolute top-1/2 right-1/4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+    />
+    <motion.div
+      animate={{
+        x: [0, 60, 0],
+        y: [0, 80, 0],
+        scale: [1, 0.9, 1],
+      }}
+      transition={{
+        duration: 18,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+    />
+  </div>
+);
+
+/* ------------------------------------------------------------------ */
+/* 4. Main Hero Component                                            */
+/* ------------------------------------------------------------------ */
+const Hero = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  /* Mouse Position */
+  useEffect(() => {
+    const handleMouse = (e) => {
+      setMouse({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouse);
+    return () => window.removeEventListener("mousemove", handleMouse);
+  }, []);
+
+  /* Loading Done */
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) return <Loader />;
+
+  return (
+    <>
+      {/* Animated Background */}
+      <AnimatedBackground />
+
+      {/* Mouse Glow Effect */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="pointer-events-none fixed inset-0 z-10"
+        style={{
+          background: `radial-gradient(600px at ${mouse.x}px ${mouse.y}px, rgba(99, 102, 241, 0.15), transparent 70%)`,
+        }}
+      />
+
+      <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+        <div className="container mx-auto max-w-7xl z-20 text-center">
           
-          <div className="relative">
-            <div className="absolute -inset-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-            <p
-              ref={ref7}
-              className="relative text-sm sm:text-base md:text-lg text-center lg:text-left max-w-md lg:max-w-lg xl:max-w-xl leading-relaxed text-gray-300 bg-gray-900/50 p-6 rounded-lg border border-gray-800 backdrop-blur-sm"
+          {/* Animated Title */}
+          <div className="mb-8">
+            <AnimatedTitle />
+          </div>
+
+          {/* Profile Image */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ 
+              delay: 0.8, 
+              type: "spring", 
+              stiffness: 100 
+            }}
+            className="flex justify-center my-12"
+          >
+            <motion.div
+              whileHover={{ 
+                scale: 1.1,
+                rotateY: 10,
+                transition: { type: "spring", stiffness: 300 }
+              }}
+              className="relative"
             >
-              Welcome to my portfolio. Here, artistry meets functionality. Dive
-              into a curated showcase of distinctive branding and web designs,
-              each crafted to captivate and inspire.
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur-lg opacity-75 animate-pulse" />
+              <Image
+                src={image1}
+                alt="Profile"
+                width={140}
+                height={140}
+                className="relative rounded-full border-4 border-purple-500/40 shadow-2xl shadow-purple-600/30 z-10"
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* Subtitles */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0 }}
+            className="space-y-2 mb-12"
+          >
+            <p className="text-2xl sm:text-3xl text-gray-300">
+              Crafting <span className="text-purple-400 font-semibold">scalable</span> &{" "}
+              <span className="text-indigo-400 font-semibold">beautiful</span> web apps
             </p>
-          </div>
+            <p className="text-lg text-gray-400">
+              From <span className="text-green-400 font-medium">Bangladesh</span> with passion
+            </p>
+          </motion.div>
+
+          {/* Tech Stack */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+            className="mt-16 flex flex-wrap justify-center gap-4"
+          >
+            {["React", "Next.js", "Node.js", "TypeScript", "Tailwind", "PostgreSQL"].map(
+              (tech, i) => (
+                <motion.div
+                  key={tech}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    delay: 1.4 + (i * 0.1),
+                    type: "spring", 
+                    stiffness: 100 
+                  }}
+                  whileHover={{ 
+                    scale: 1.15, 
+                    y: -8,
+                    transition: { type: "spring", stiffness: 400 }
+                  }}
+                  className="relative group cursor-pointer"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
+                  <div className="relative px-6 py-3 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg">
+                    <span className="text-lg font-medium text-gray-200 group-hover:text-white transition-colors">
+                      {tech}
+                    </span>
+                  </div>
+                </motion.div>
+              )
+            )}
+          </motion.div>
+
+          {/* Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8 }}
+            className="mx-auto mt-16 max-w-2xl"
+          >
+            <p className="text-gray-300 text-lg leading-relaxed bg-gray-900/40 backdrop-blur-sm p-6 rounded-2xl border border-gray-800">
+              Building <span className="text-purple-400 font-medium">modern, performant</span> applications with{" "}
+              <span className="text-indigo-400 font-medium">cutting-edge tech</span>. Passionate about clean
+              code, great UX, and pushing the web forward.
+            </p>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.2 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-8 h-12 border-2 border-purple-500 rounded-full flex justify-center"
+            >
+              <div className="w-1 h-4 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-full mt-3" />
+            </motion.div>
+          </motion.div>
         </div>
-        
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-          <div className="w-6 h-10 border-2 border-gray-500 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-blue-500 rounded-full mt-2 animate-bounce"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 

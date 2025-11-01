@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="max-w-[1440px] w-[540px] md:w-[1440px] py-[64px] px-[100px] flex flex-col gap-[32px]">
         <div className="w-full flex flex-col items-center justify-center gap-[32px]">
           <h1 className="text-[24px] md:text-[42px] lg:text-[64px] leading-[80px] font-extrabold">
-            LET’S TALK!
+            LET&apos;S TALK!
           </h1>
           <Link
             href={"https://mail.google.com/mail/u/0/"}

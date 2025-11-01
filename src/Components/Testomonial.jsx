@@ -56,7 +56,7 @@ const Testimonial = () => {
                 key={index}
                 className="w-full flex-shrink-0 px-4"
               >
-                <div className="relative bg-black rounded-xl p-6 md:p-8 lg:p-10 shadow-lg">
+                <div className="relative bg-black/30 backdrop-blur-lg rounded-xl p-6 md:p-8 lg:p-10 shadow-lg">
                   <Image
                     src={image2}
                     className="absolute top-6 right-6 md:right-8 w-8 md:w-12 opacity-60"

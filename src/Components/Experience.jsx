@@ -18,7 +18,7 @@ const Experience = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full bg-black">
+    <div className="flex flex-col items-center justify-center w-full">
       <div className="flex flex-col gap-8 py-4 md:py-12 px-4 sm:px-6 md:px-10 container lg:px-20 xl:px-28 w-full">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center sm:text-left">
           Experience
