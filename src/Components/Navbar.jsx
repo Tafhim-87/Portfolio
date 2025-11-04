@@ -261,21 +261,9 @@ const Navbar = () => {
 
           {/* Enhanced Mobile Menu with Premium Glass Effect */}
           <div
-            className={`menuBar lg:hidden fixed top-0 right-0 w-80 h-full z-50 flex flex-col gap-6 py-12 justify-start items-start px-8 bg-gray-900/80 backdrop-blur-2xl border-l border-white/10 shadow-2xl shadow-black/50`}
+            className={`lg:hidden fixed top-0 right-0 w-80 h-screen z-50 flex flex-col gap-6 py-12 justify-start items-start px-8 bg-gray-900/80 backdrop-blur-2xl border-l border-white/10 shadow-2xl shadow-black/50`}
             style={{ display: menuBar ? 'flex' : 'none' }}
           >
-            {/* Menu Header */}
-            <div className="w-full flex justify-between items-center mb-12">
-              <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-                Tafhim
-              </h1>
-              <button 
-                onClick={toggleMenu}
-                className="p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 transition-all duration-300"
-              >
-                <FiX className="text-white hover:text-blue-300 transition-colors" size={20} />
-              </button>
-            </div>
             
             {/* Mobile Navigation Links */}
             <Link
